@@ -1,0 +1,139 @@
+
+        *:not(html, body) {
+            cursor: none !important;
+        }
+        html, body {
+            cursor: none;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            border: 2px solid #a3e635; 
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        #cursor-follower.is-active {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(163, 230, 53, 0.2); 
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            *:not(html, body), html, body {
+                cursor: auto !important; 
+            }
+            #cursor-follower {
+                display: none;
+            }
+        }
+
+
+        .interactive-title-word {
+            display: inline-block; 
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .interactive-title-word:hover {
+            transform: translateY(-8px);
+        }
+
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animate-on-scroll.delay-100 { transition-delay: 0.1s; }
+        .animate-on-scroll.delay-150 { transition-delay: 0.15s; }
+        .animate-on-scroll.delay-200 { transition-delay: 0.2s; }
+        .animate-on-scroll.delay-300 { transition-delay: 0.3s; }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .article-fade-in {
+            opacity: 0;
+        }
+        .article-fade-in.is-visible {
+
+            animation: fade-in-up 0.6s ease-out forwards;
+        }
+
+        .article-image-hover {
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+        }
+        .article-image-hover:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        #modal-content, #confirm-modal-content {
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        #modal.is-open #modal-content,
+        #confirm-modal.is-open #confirm-modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes highlight {
+          0% { 
+            background-color: #a3e635; 
+            color: #000;
+            transform: scale(1.02);
+          }
+          100% { 
+            background-color: transparent;
+            color: #a3e635;
+            transform: scale(1);
+          }
+        }
+
+        .new-subscriber-highlight {
+            animation: highlight 2s ease-out;
+        }
+        
+        .node {
+            animation: pulse 3s infinite ease-in-out;
+        }
+        .node-2 { animation-delay: 0.5s; }
+        .node-3 { animation-delay: 1.0s; }
+        .node-4 { animation-delay: 1.5s; }
+        
+        @keyframes pulse {
+            0%, 100% { r: 5; opacity: 0.4; }
+            50% { r: 8; opacity: 1; }
+        }
+        
+        .line {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: draw-line 8s infinite ease-in-out;
+        }
+        
+        .line-2 { animation-delay: 1.0s; }
+        .line-3 { animation-delay: 2.0s; }
+
+        @keyframes draw-line {
+            0% { stroke-dashoffset: 500; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -500; }
+        }
